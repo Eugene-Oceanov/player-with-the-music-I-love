@@ -1,0 +1,20 @@
+{
+  "name": "wb-l2-music-player",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Eugene-Oceanov/wb-l2-music-player.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Eugene-Oceanov/wb-l2-music-player/issues"
+  },
+  "homepage": "https://github.com/Eugene-Oceanov/wb-l2-music-player#readme",
+  "dependencies": {
+    "wavesurfer.js": "^7.4.4"
+  }
+}
