@@ -1,12 +1,6 @@
 import { musicBase } from "./musicBase";
+import WaveSurfer from "wavesurfer.js";
 
-// const player = document.querySelector(".player");
-// audio = document.querySelector(".audio"),
-// visualBlock = document.querySelector(".visual-block"),
-// songTitle = document.querySelector(".song-title"),
-// songAuthor = document.querySelector(".author-title"),
-// albumInfo = document.querySelector(".album-info");
-// let
 
 export const playerLogic = {
     audio: document.querySelector(".audio"),
@@ -16,43 +10,44 @@ export const playerLogic = {
     albumInfo: document.querySelector(".album-info"),
     currentSong: 0,
     isPlayed: false,
+
     musicInit: function (item) {
         this.songTitle.innerText = item.title;
         this.songAuthor.innerText = item.author;
         this.albumInfo.innerText = `${item.album} (${item.year})`
-        this.audio.src = `./assets/music/${this.getFileName(item)}.mp3`;
+        this.audio.src = item.file;
     },
-    musicPlay: function () {
-        audio.play();
-        isPlayed = true;
+
+    musicPlay: function (playBtn, pauseBtn) {
+        this.audio.play()
+        this.isPlayed = true;
         playBtn.style.display = "none";
         pauseBtn.style.display = "block";
-        console.log(1)
     },
-    musicPause: function () {
-        audio.pause();
-        isPlayed = false;
+    musicPause: function (playBtn, pauseBtn) {
+        this.audio.pause();
+        this.isPlayed = false;
         playBtn.style.display = "block";
         pauseBtn.style.display = "none";
     },
 
-    prevSong: function () {
-        currentSong--
-        if (currentSong <= 0) currentSong = musicBase.length - 1;
-        this.musicInit(musicBase[currentSong]);
-        if (isPlayed === true) this.musicPlay();
+    prevSong: function (playBtn, pauseBtn) {
+        this.currentSong--;
+        if (this.currentSong <= 0) this.currentSong = musicBase.length - 1;
+        this.musicInit(musicBase[this.currentSong]);
+        if (this.isPlayed === true) this.musicPlay(playBtn, pauseBtn);
     },
 
-    nextSong: function () {
-        currentSong++
-        if (currentSong >= musicBase.length) currentSong = 0;
-        this.musicInit(musicBase[currentSong]);
-        if (isPlayed === true) this.musicPlay();
+    nextSong: function (playBtn, pauseBtn) {
+        this.currentSong++
+        if (this.currentSong >= musicBase.length) this.currentSong = 0;
+        this.musicInit(musicBase[this.currentSong]);
+        if (this.isPlayed === true) this.musicPlay(playBtn, pauseBtn);
     },
 
     getFileName: function (item) {
         let fileName = `${item.author} - ${item.title}`;
         console.log(fileName)
         return fileName;
-    }
+    },
 }
