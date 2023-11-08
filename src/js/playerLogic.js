@@ -1,6 +1,4 @@
 import { musicBase } from "./musicBase";
-import WaveSurfer from "wavesurfer.js";
-
 
 export const playerLogic = {
     audio: document.querySelector(".audio"),
@@ -8,46 +6,90 @@ export const playerLogic = {
     songTitle: document.querySelector(".song-title"),
     songAuthor: document.querySelector(".author-title"),
     albumInfo: document.querySelector(".album-info"),
+    progressOuter: document.querySelector(".progress-bar-outer"),
+    progressInner: document.querySelector(".progress-bar-inner"),
+    songTimer: document.querySelector(".timer"),
+    songDuration: document.querySelector(".duration"),
+    playBtn: document.querySelector(".play"),
+    pauseBtn: document.querySelector(".pause"),
+    duration: null,
     currentSong: 0,
     isPlayed: false,
 
     musicInit: function (item) {
+        this.audio.src = item.file;
+
         this.songTitle.innerText = item.title;
         this.songAuthor.innerText = item.author;
-        this.albumInfo.innerText = `${item.album} (${item.year})`
-        this.audio.src = item.file;
+        this.albumInfo.innerText = `${item.album} (${item.year})`;
+        this.audio.onloadeddata = () => {
+            this.songDuration.innerText = this.timeStr(this.audio.duration);
+            this.progressOuter.addEventListener("click", e => this.setProgress(e));
+            this.getProgress();
+        };
+        this.visualBlock.style.background = `url("${item.cover}")  no-repeat center / cover`
     },
 
-    musicPlay: function (playBtn, pauseBtn) {
+    musicPlay: function () {
         this.audio.play()
         this.isPlayed = true;
-        playBtn.style.display = "none";
-        pauseBtn.style.display = "block";
+        this.playBtn.style.display = "none";
+        this.pauseBtn.style.display = "block";
+
     },
-    musicPause: function (playBtn, pauseBtn) {
+    musicPause: function () {
         this.audio.pause();
         this.isPlayed = false;
-        playBtn.style.display = "block";
-        pauseBtn.style.display = "none";
+        this.playBtn.style.display = "block";
+        this.pauseBtn.style.display = "none";
     },
 
-    prevSong: function (playBtn, pauseBtn) {
+    prevSong: function () {
         this.currentSong--;
-        if (this.currentSong <= 0) this.currentSong = musicBase.length - 1;
+        if (this.currentSong < 0) this.currentSong = musicBase.length - 1;
         this.musicInit(musicBase[this.currentSong]);
-        if (this.isPlayed === true) this.musicPlay(playBtn, pauseBtn);
+        if (this.isPlayed === true) this.musicPlay();
     },
 
-    nextSong: function (playBtn, pauseBtn) {
+    nextSong: function () {
         this.currentSong++
         if (this.currentSong >= musicBase.length) this.currentSong = 0;
         this.musicInit(musicBase[this.currentSong]);
-        if (this.isPlayed === true) this.musicPlay(playBtn, pauseBtn);
+        if (this.isPlayed === true) {
+            this.musicPlay();
+        }
+    },
+
+    getProgress: function () {
+        this.audio.addEventListener("timeupdate", (e) => {
+            let { duration, currentTime } = e.srcElement;
+            this.songTimer.innerText = this.timeStr(currentTime)
+            this.progressInner.style.width = `${currentTime / duration * 100}%`;
+            if (currentTime == duration) {
+                if (this.isPlayed) this.nextSong();
+                else return;
+            }
+        })
+    },
+
+    setProgress: function (e) {
+        let offsetX = e.offsetX;
+        let duration = this.audio.duration;
+        this.audio.currentTime = (offsetX / e.target.clientWidth) * duration;
+        this.getProgress();
+
     },
 
     getFileName: function (item) {
         let fileName = `${item.author} - ${item.title}`;
         console.log(fileName)
         return fileName;
+    },
+
+    timeStr: function (time) {
+        let minutes = Math.floor(time / 60);
+        let seconds = Math.floor(time - (minutes * 60));
+        if (seconds < 10) seconds = `0${seconds}`
+        return `${minutes}:${seconds}`;
     },
 }

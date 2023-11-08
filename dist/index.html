@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        Music
+    </title>
+<script defer src="main.js"></script></head>
+
+<body>
+    <audio class="audio" src="./assets/music/Slaves - Sockets.mp3"></audio>
+    <div class="player">
+        <audio class="audio"></audio>
+        <div class="visual-block"></div>
+        <div class="song-info">
+            <div class="song-title"></div>
+            <div class="author-title"></div>
+            <div class="album-info"></div>
+        </div>
+        <div class="player-panel">
+            <div class="progress-bar-outer">
+                <div class="progress-bar-inner"></div>
+            </div>
+            <div class="song-time">
+                <p class="timer">0:00</p>
+                <p class="duration"></p>
+            </div>
+            <div class="controls">
+                <svg fill="#000000" width="50px" height="50px" viewBox="0 0 32 32"
+                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1"
+                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" class="prev">
+                    <g id="Icon">
+                        <path
+                            d="M22.554,13.503c-3.552,-2.365 -10.056,-6.696 -13.914,-9.265c-0.921,-0.613 -2.104,-0.67 -3.079,-0.148c-0.975,0.522 -1.584,1.539 -1.584,2.645l0,18.53c0,1.106 0.609,2.123 1.584,2.645c0.975,0.522 2.158,0.465 3.079,-0.148c3.858,-2.569 10.362,-6.9 13.914,-9.265c0.836,-0.556 1.338,-1.493 1.338,-2.497c-0,-1.004 -0.502,-1.941 -1.338,-2.497l0,-0Zm-15.022,-7.601l13.914,9.266c0.278,0.185 0.446,0.497 0.446,0.832c-0,0.335 -0.168,0.647 -0.446,0.832l-13.914,9.266c-0.307,0.204 -0.702,0.223 -1.027,0.049c-0.325,-0.174 -0.528,-0.513 -0.528,-0.882c0,0 0,-18.53 0,-18.53c0,-0.369 0.203,-0.708 0.528,-0.882c0.325,-0.174 0.72,-0.155 1.027,0.049Z" />
+                        <path
+                            d="M26.003,4.987l-0.003,22c-0,0.552 0.448,1.001 1,1.001c0.552,-0 1,-0.448 1,-1l0.003,-22c-0,-0.552 -0.448,-1 -1,-1c-0.552,-0 -1,0.448 -1,0.999Z" />
+                    </g>
+                </svg>
+                <svg width="80px" height="80px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="play">
+                    <g id="SVGRepo_bgCarrier" stroke-width="0" />
+                    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round" />
+                    <g id="SVGRepo_iconCarrier">
+                        <path
+                            d="M16.6582 9.28638C18.098 10.1862 18.8178 10.6361 19.0647 11.2122C19.2803 11.7152 19.2803 12.2847 19.0647 12.7878C18.8178 13.3638 18.098 13.8137 16.6582 14.7136L9.896 18.94C8.29805 19.9387 7.49907 20.4381 6.83973 20.385C6.26501 20.3388 5.73818 20.0469 5.3944 19.584C5 19.053 5 18.1108 5 16.2264V7.77357C5 5.88919 5 4.94701 5.3944 4.41598C5.73818 3.9531 6.26501 3.66111 6.83973 3.6149C7.49907 3.5619 8.29805 4.06126 9.896 5.05998L16.6582 9.28638Z"
+                            stroke="#000000" stroke-width="2" stroke-linejoin="round" />
+                    </g>
+                </svg>
+                <svg width="80px" height="80px" viewBox="-0.5 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg"
+                    class="pause">
+                    <path
+                        d="M10 6.42004C10 4.76319 8.65685 3.42004 7 3.42004C5.34315 3.42004 4 4.76319 4 6.42004V18.42C4 20.0769 5.34315 21.42 7 21.42C8.65685 21.42 10 20.0769 10 18.42V6.42004Z"
+                        stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    <path
+                        d="M20 6.42004C20 4.76319 18.6569 3.42004 17 3.42004C15.3431 3.42004 14 4.76319 14 6.42004V18.42C14 20.0769 15.3431 21.42 17 21.42C18.6569 21.42 20 20.0769 20 18.42V6.42004Z"
+                        stroke="#000000" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                </svg>
+                <svg fill="#000000" width="50px" height="50px" viewBox="0 0 32 32"
+                    style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;" version="1.1"
+                    xml:space="preserve" xmlns="http://www.w3.org/2000/svg" xmlns:serif="http://www.serif.com/"
+                    xmlns:xlink="http://www.w3.org/1999/xlink" class="next">
+                    <g id="Icon">
+                        <path
+                            d="M22.554,13.503c-3.552,-2.365 -10.056,-6.696 -13.914,-9.265c-0.921,-0.613 -2.104,-0.67 -3.079,-0.148c-0.975,0.522 -1.584,1.539 -1.584,2.645l0,18.53c0,1.106 0.609,2.123 1.584,2.645c0.975,0.522 2.158,0.465 3.079,-0.148c3.858,-2.569 10.362,-6.9 13.914,-9.265c0.836,-0.556 1.338,-1.493 1.338,-2.497c-0,-1.004 -0.502,-1.941 -1.338,-2.497l0,-0Zm-15.022,-7.601l13.914,9.266c0.278,0.185 0.446,0.497 0.446,0.832c-0,0.335 -0.168,0.647 -0.446,0.832l-13.914,9.266c-0.307,0.204 -0.702,0.223 -1.027,0.049c-0.325,-0.174 -0.528,-0.513 -0.528,-0.882c0,0 0,-18.53 0,-18.53c0,-0.369 0.203,-0.708 0.528,-0.882c0.325,-0.174 0.72,-0.155 1.027,0.049Z" />
+                        <path
+                            d="M26.003,4.987l-0.003,22c-0,0.552 0.448,1.001 1,1.001c0.552,-0 1,-0.448 1,-1l0.003,-22c-0,-0.552 -0.448,-1 -1,-1c-0.552,-0 -1,0.448 -1,0.999Z" />
+                    </g>
+                </svg>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

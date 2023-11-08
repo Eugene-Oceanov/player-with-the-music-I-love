@@ -38,18 +38,18 @@ module.exports = {
             },
             {
                 test: /\.(png|jpg|jpeg|gif|svg)$/i,
-                type: "asset/resource",
+                type: "asset/covers",
                 generator: {
                     filename: "assets/img/[name][ext]"
                 }
             },
             {
-                test: /\.(woff|woff2|eot|ttf|mp3|otf)$/,
+                test: /\.(mp3)$/,
                 use: {
                     loader: 'file-loader',
                     options: {
                         name: '[name].[ext]',
-                        outputPath: "./assets/fonts/"
+                        outputPath: "./assets/music/"
                     }
                 }
             },
