@@ -3,6 +3,7 @@ import { musicBase } from "./musicBase";
 export const playerLogic = {
     audio: document.querySelector(".audio"),
     visualBlock: document.querySelector(".visual-block"),
+    titleWrapper: document.querySelector(".title-wrapper"),
     songTitle: document.querySelector(".song-title"),
     songAuthor: document.querySelector(".author-title"),
     albumInfo: document.querySelector(".album-info"),
@@ -18,16 +19,15 @@ export const playerLogic = {
 
     musicInit: function (item) {
         this.audio.src = item.file;
-
         this.songTitle.innerText = item.title;
         this.songAuthor.innerText = item.author;
         this.albumInfo.innerText = `${item.album} (${item.year})`;
         this.audio.onloadeddata = () => {
             this.songDuration.innerText = this.timeStr(this.audio.duration);
-            this.progressOuter.addEventListener("click", e => this.setProgress(e));
             this.getProgress();
         };
-        this.visualBlock.style.background = `url("${item.cover}")  no-repeat center / cover`
+        this.visualBlock.style.background = `url("${item.cover}")  no-repeat center / cover`;
+        this.rollTitle();
     },
 
     musicPlay: function () {
@@ -75,15 +75,23 @@ export const playerLogic = {
     setProgress: function (e) {
         let offsetX = e.offsetX;
         let duration = this.audio.duration;
-        this.audio.currentTime = (offsetX / e.target.clientWidth) * duration;
+        this.audio.currentTime = (offsetX / this.progressOuter.clientWidth) * duration;
         this.getProgress();
-
     },
 
-    getFileName: function (item) {
-        let fileName = `${item.author} - ${item.title}`;
-        console.log(fileName)
-        return fileName;
+    rollTitle: function () {
+        this.songTitle.style.width = "fit-content";
+        this.songTitle.style.animation = "";
+        this.songTitle.style.transform = "translate(0, 0)";
+        this.songTitle.style.width = "fit-content";
+        if (this.songTitle.clientWidth > this.titleWrapper.clientWidth) {
+            document.body.style.cssText = `--rollTitle: -${this.songTitle.clientWidth - this.titleWrapper.clientWidth}px`;
+            this.songTitle.style.animation = "rollTitle 10s ease infinite";
+        }
+    },
+
+    changeVolume: function (value) {
+        this.audio.volume = value;
     },
 
     timeStr: function (time) {
