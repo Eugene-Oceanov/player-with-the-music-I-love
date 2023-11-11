@@ -5,7 +5,8 @@ export const playerLogic = {
     visualBlock: document.querySelector(".visual-block"),
     titleWrapper: document.querySelector(".title-wrapper"),
     songTitle: document.querySelector(".song-title"),
-    songAuthor: document.querySelector(".author-title"),
+    authorWrapper: document.querySelector(".author-wrapper"),
+    songAuthor: document.querySelector(".song-author"),
     albumInfo: document.querySelector(".album-info"),
     progressOuter: document.querySelector(".progress-bar-outer"),
     progressInner: document.querySelector(".progress-bar-inner"),
@@ -27,7 +28,8 @@ export const playerLogic = {
             this.getProgress();
         };
         this.visualBlock.style.background = `url("${item.cover}")  no-repeat center / cover`;
-        this.rollTitle();
+        this.rollText(this.titleWrapper, this.songTitle);
+        this.rollText(this.authorWrapper, this.songAuthor);
     },
 
     musicPlay: function () {
@@ -79,14 +81,14 @@ export const playerLogic = {
         this.getProgress();
     },
 
-    rollTitle: function () {
-        this.songTitle.style.width = "fit-content";
-        this.songTitle.style.animation = "";
-        this.songTitle.style.transform = "translate(0, 0)";
-        this.songTitle.style.width = "fit-content";
-        if (this.songTitle.clientWidth > this.titleWrapper.clientWidth) {
-            document.body.style.cssText = `--rollTitle: -${this.songTitle.clientWidth - this.titleWrapper.clientWidth}px`;
-            this.songTitle.style.animation = "rollTitle 10s ease infinite";
+    rollText: function (outer, inner) {
+        inner.style.width = "fit-content";
+        inner.style.animation = "";
+        inner.style.transform = "translate(0, 0)";
+        inner.style.width = "fit-content";
+        if (inner.clientWidth > outer.clientWidth) {
+            document.body.style.cssText = `--rollText: -${this.songTitle.clientWidth - outer.clientWidth}px`;
+            inner.style.animation = "rollText 10s ease infinite";
         }
     },
 
