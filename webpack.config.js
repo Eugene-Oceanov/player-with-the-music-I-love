@@ -58,7 +58,7 @@ module.exports = {
 
     plugins: [
         new htmlWebpackPlugin({
-            title: "Movie App",
+            title: "the music I love",
             filename: "index.html",
             template: path.resolve(__dirname, "src/index.html")
         })
